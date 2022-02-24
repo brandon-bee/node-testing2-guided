@@ -13,11 +13,13 @@ function getAll() {
 }
 
 function getById(id) {
-  return null
+  return db('hobbits').where('id', id).first()
 }
 
 async function insert(hobbit) {
-  return null
+  return db('hobbits').insert(hobbit).where('id', hobbit.id).then(id => {
+    return getById(id)
+  })
 }
 
 async function update(id, changes) {
